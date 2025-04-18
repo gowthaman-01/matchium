@@ -29,7 +29,7 @@ int ServerSocket::accept_client() {
     sockaddr* addr_ptr = reinterpret_cast<sockaddr*>(&client_addr);
     socklen_t client_len = sizeof(client_addr);
 
-    LOG_INFO(format_identity(Constants::Role::Server, socket_.get_fd()) + " waiting for a client to connect...");
+    LOG_INFO(Utility::format_identity(Constants::Role::Server, socket_.get_fd()) + " waiting for a client to connect...");
 
     // Accept a connection
     int client_fd = accept(socket_.get_fd(), addr_ptr, &client_len);
@@ -37,9 +37,9 @@ int ServerSocket::accept_client() {
         Error::fatal("accept", socket_.get_fd());
     }
 
-    LOG_INFO(format_identity(Constants::Role::Server, socket_.get_fd())
+    LOG_INFO(Utility::format_identity(Constants::Role::Server, socket_.get_fd())
              + " accepted new "
-             + format_identity(Constants::Role::Client, client_fd));
+             + Utility::format_identity(Constants::Role::Client, client_fd));
 
     return client_fd;
 }
@@ -61,7 +61,7 @@ void ServerSocket::bind_socket() {
         Error::fatal("bind", socket_.get_fd());
     }
     
-    LOG_INFO(format_identity(Constants::Role::Server, socket_.get_fd())
+    LOG_INFO(Utility::format_identity(Constants::Role::Server, socket_.get_fd())
              + " successfully bound to port "
              + std::to_string(port_));
 }
@@ -73,7 +73,7 @@ void ServerSocket::listen_socket() {
     }
     is_listening_ = true;
 
-    LOG_INFO(format_identity(Constants::Role::Server, socket_.get_fd())
+    LOG_INFO(Utility::format_identity(Constants::Role::Server, socket_.get_fd())
              + " listening on port "
              + std::to_string(port_));
 }

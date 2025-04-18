@@ -16,7 +16,7 @@ Connection::Connection(int client_fd) : client_fd_(client_fd) {}
 Connection::~Connection() {
     if (client_fd_ >= 0) {
         close(client_fd_);
-        LOG_INFO(format_identity(Constants::Role::Client, client_fd_) + " closed");
+        LOG_INFO(Utility::format_identity(Constants::Role::Client, client_fd_) + " closed");
     }
 }
 
@@ -29,7 +29,7 @@ Connection& Connection::operator=(Connection &&other) noexcept {
         if (client_fd_ >= 0) {
             // Close existing client_fd_ before taking ownership of new one
             close(client_fd_);
-            LOG_INFO(format_identity(Constants::Role::Client, client_fd_) + " closed");
+            LOG_INFO(Utility::format_identity(Constants::Role::Client, client_fd_) + " closed");
         }
         
         client_fd_ = other.client_fd_;
@@ -54,7 +54,7 @@ std::string Connection::receive_message() {
     ssize_t bytes_received = recv(client_fd_, buffer, sizeof(buffer) - 1, 0);
 
     if (bytes_received <= 0) {
-        LOG_INFO(format_identity(Constants::Role::Client, client_fd_) + " failed to receive data or client disconnected.");
+        LOG_INFO(Utility::format_identity(Constants::Role::Client, client_fd_) + " failed to receive data or client disconnected.");
         return "";
     }
     

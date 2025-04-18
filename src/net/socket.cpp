@@ -19,7 +19,7 @@ Socket::Socket() : fd_(-1) {
 Socket::~Socket() {
     if (fd_ >= 0) {
         close(fd_);
-        LOG_INFO(format_identity(Constants::Role::Server, fd_) + " closed");
+        LOG_INFO(Utility::format_identity(Constants::Role::Server, fd_) + " closed");
     }
 }
 
@@ -32,7 +32,7 @@ Socket& Socket::operator=(Socket&& other) noexcept {
         if (fd_ >= 0) {
             // Close existing fd_ before taking ownership of new one
             close(fd_);
-            LOG_INFO(format_identity(Constants::Role::Server, fd_) + " closed");
+            LOG_INFO(Utility::format_identity(Constants::Role::Server, fd_) + " closed");
         }
         fd_ = other.fd_;
         other.fd_ = -1;
@@ -70,5 +70,5 @@ void Socket::create_socket() {
         Error::fatal("setsockopt", fd_);
     }
     
-    LOG_INFO(format_identity(Constants::Role::Server, fd_) + " created");
+    LOG_INFO(Utility::format_identity(Constants::Role::Server, fd_) + " created");
 }
