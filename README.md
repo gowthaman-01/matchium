@@ -1,6 +1,6 @@
-# TCP HTTP Server
+# HTTPrune
 
-A modular, extensible TCP-based HTTP server and client built using **modern C++**.
+A modular, extensible HTTP server and client built using **modern C++**.
 
 
 ## Installation
@@ -26,11 +26,24 @@ Switch to the root of the project and run:
 This will create a `build/` directory and compile the project using CMake.
 
 
-### 3. Run the Server and client Client
+### 3. Run the Server
 
 ```bash
 ./scripts/run_server.sh    # Starts the server (default: port 4221)
-
-# On a separate terminal
-./scripts/run_client.sh    # Starts the client and sends a message
 ```
+
+### 4. Test in Browser
+
+Once the server is running, open your browser and navigate to:
+
+```bash
+http://localhost:4221/
+```
+
+You should see:
+
+```bash
+Hello, world!
+```
+
+That means your server is accepting HTTP connections and serving responses successfully!
