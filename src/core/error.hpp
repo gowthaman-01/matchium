@@ -10,5 +10,5 @@ public:
      * @param label Message prefix for perror (e.g., "bind")
      * @param fd File descriptor to close before exiting (optional; pass -1 to skip)
      */
-    static void fatal(const std::string& label, int fd = -1);
+    [[noreturn]] static void fatal(const std::string& label, int fd = -1);
 };
