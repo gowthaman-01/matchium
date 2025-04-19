@@ -10,7 +10,7 @@
 class Connection {
 public:
     explicit Connection(int client_fd);
-    ~Connection();
+    ~Connection() noexcept;
     
     Connection(const Connection& other) = delete;
     Connection& operator=(const Connection& other) = delete;

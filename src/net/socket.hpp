@@ -11,7 +11,7 @@
 class Socket {
 public:
     explicit Socket();
-    ~Socket();
+    ~Socket() noexcept;
     
     Socket(const Socket& other) = delete;
     Socket& operator=(const Socket& other) = delete;
