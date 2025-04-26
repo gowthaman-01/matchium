@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(http-server)
+project(matchium)
 
 # Set C++ Standard
 set(CMAKE_CXX_STANDARD 23)
@@ -13,7 +13,7 @@ file(GLOB_RECURSE SRC_FILES
 )
 
 # Add executable
-add_executable(httprune main.cpp ${SRC_FILES})
+add_executable(matchium main.cpp ${SRC_FILES})
 
 # Optional warnings
-target_compile_options(httprune PRIVATE -Wall -Wextra -pedantic)
+target_compile_options(matchium PRIVATE -Wall -Wextra -pedantic)

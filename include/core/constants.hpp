@@ -11,7 +11,7 @@ namespace Constants {
     inline constexpr std::size_t buffer_size { 1024 };
     inline constexpr int tcp_protocol { 0 };
     inline constexpr int padding_width { 40 };
-    inline constexpr std::string_view CRLF { "\r\n"};
+    inline constexpr std::string_view CRLF { "\r\n" };
     inline constexpr std::string_view SPACE { " " };
     inline constexpr std::string_view COLON_SPACE { ": " };
 

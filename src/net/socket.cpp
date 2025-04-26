@@ -1,10 +1,10 @@
-#include "socket.hpp"
+#include "../../include/net/socket.hpp"
 
-#include "../core/constants.hpp"
-#include "../core/error.hpp"
-#include "../core/logger.hpp"
-#include "../core/logger_macros.hpp"
-#include "../core/utils.hpp"
+#include "../../include/core/constants.hpp"
+#include "../../include/core/error.hpp"
+#include "../../include/core/logger.hpp"
+#include "../../include/core/logger_macros.hpp"
+#include "../../include/core/utils.hpp"
 
 #include <string>
 
