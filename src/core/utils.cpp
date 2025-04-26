@@ -1,6 +1,6 @@
 #include "../../include/core/utils.hpp"
 
-#include "constants.hpp"
+#include "../../include/core/constants.hpp"
 
 #include <string>
 #include <string_view>
