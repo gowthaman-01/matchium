@@ -4,4 +4,4 @@
 
 #include <string_view>
 
-Request parse_request(std::string_view message);
+[[nodiscard]] Request parse_request(std::string_view message);

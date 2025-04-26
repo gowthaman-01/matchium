@@ -16,7 +16,7 @@ Socket::Socket() : fd_(-1) {
     create_socket();
 }
 
-Socket::~Socket() {
+Socket::~Socket() noexcept {
     if (fd_ >= 0) {
         close(fd_);
         LOG_INFO(Utility::format_identity(Constants::Role::Server, fd_) + " closed");

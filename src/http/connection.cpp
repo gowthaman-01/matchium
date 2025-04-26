@@ -13,7 +13,7 @@
 
 Connection::Connection(int client_fd) : client_fd_(client_fd) {}
 
-Connection::~Connection() {
+Connection::~Connection() noexcept {
     if (client_fd_ >= 0) {
         close(client_fd_);
         LOG_INFO(Utility::format_identity(Constants::Role::Client, client_fd_) + " closed");
