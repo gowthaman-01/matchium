@@ -21,7 +21,7 @@
  */
 class ServerSocket {
 public:
-    explicit ServerSocket(Socket&& socket, int port = Constants::port);
+    explicit ServerSocket(Socket&& socket, int port = Constants::default_port);
     
     [[nodiscard]] int accept_client();
     

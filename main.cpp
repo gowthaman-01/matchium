@@ -1,8 +1,9 @@
 #include "include/core/constants.hpp"
-#include "include/core/utils.hpp"
 #include "include/http/connection.hpp"
 #include "include/http/parser.hpp"
 #include "include/http/request.hpp"
+#include "include/http/router.hpp"
+#include "include/http/handlers/snapshot_handler.hpp"
 #include "include/net/server_socket.hpp"
 
 #include <iostream>
@@ -13,29 +14,20 @@ int main() {
     Socket socket;
     ServerSocket server_socket(std::move(socket));
     
-    int count = 1;
+    Router router;
+    router.register_handler(Constants::GET_METHOD, Constants::SNAPSHOT_PATH, snapshot_handler);
+
     while(true) {
         int client_fd = server_socket.accept_client();
-        
         Connection conn(client_fd);
-        std::string msg = conn.receive_message();
         
-        Request req = parse_request(msg);
+        std::string raw_msg = conn.receive_message();
+        Request req = Parser::parse_request(raw_msg);
         
-        // Hardcoded response
-        std::string body = "Hello, world! " + std::to_string(count);
-        std::string response =
-            "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/plain\r\n"
-            "Content-Length: "
-            + std::to_string(body.size())
-            + "\r\n\r\n"
-            + body;
-        conn.send_message(response);
+        Response res = router.route(req);
+        std::string raw_response = Parser::serialise_response(res);
         
-        if (req.path == "/") {
-            count++;
-        }
+        conn.send_message(raw_response);
     }
-  
 }
+ 
